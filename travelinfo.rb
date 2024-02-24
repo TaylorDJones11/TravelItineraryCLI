@@ -7,6 +7,7 @@ class Itinerary
     @depature = departure_date
     @return = return_date
     @activities = activities
+    final_itinerary = " "
   end
 
   def trip
@@ -65,6 +66,20 @@ class Itinerary
   end
 
   def add_activities
+    "\n"
+    puts "What are some activities you'll be doing on your trip?"
+    self.activities = gets.chomp
+
+    act_reaction = [
+      "That sounds like fun!",
+      "Oh, I have to try that on my next holiday",
+      "What a great way to have fun on your trip!"
+    ]
+
+    puts "#{act_reaction.sample}"
+  end
+
+  def final_itinerary
   end
 
 end
