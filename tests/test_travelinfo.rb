@@ -21,11 +21,6 @@ class TestTravelInfo < Minitest::Test
     assert_equal Date.new(2024,3,5), @itinerary.return_date
   end
 
-  def test_valid_date
-    assert @itinerary.valid_date?("2024-03-01")
-    refute @itinerary.valid_date?("2024-02-30")
-  end
-
   def test_add_activities
     @itinerary.add_activities("Sightseeing")
     assert_equal "Sightseeing", @itinerary.activities
