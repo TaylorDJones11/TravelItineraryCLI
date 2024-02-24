@@ -7,7 +7,6 @@ class Itinerary
     @depature = departure_date
     @return = return_date
     @activities = activities
-   
   end
 
   def trip
@@ -75,6 +74,15 @@ class Itinerary
   end
 
   def add_return
+    puts "Enter return date (YYYY-MM-DD):"
+    date_str = gets.chomp
+
+    if valid_date?(date_str)
+      self.return_date = Date.parse(date_str)
+      puts "Return date set to #{return_date}"
+    else
+      puts "Invalid date format. Please enter date in YYYY-MM-DD format."
+    end
   end
 
   def add_activities
