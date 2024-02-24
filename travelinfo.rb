@@ -63,6 +63,15 @@ class Itinerary
   end
 
   def add_depature
+    puts "Enter depature date (YYYY-MM_DD):"
+    date_str = gets.chomp
+
+    if valid_date?(date_str)
+      self.departure_date = Date.parse(date_str)
+      puts "Depature date set to #{departure_date}"
+    else
+      puts "Invalid date format. Please enter date in YYYY-MM-DD format."
+    end
   end
 
   def add_return
