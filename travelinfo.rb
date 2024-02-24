@@ -85,6 +85,10 @@ class Itinerary
     end
   end
 
+  def valid_date?(date_str)
+    Date.parse(date_str)
+  end
+
   def add_activities
     "\n"
     puts "What are some activities you'll be doing on your trip?"
