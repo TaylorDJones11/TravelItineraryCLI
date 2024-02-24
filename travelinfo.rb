@@ -1,10 +1,10 @@
 require 'date'
 
 class Itinerary
-  attr_accessor :destination, :departure_date, :return_date, :activities, :traveler_name
+  attr_accessor :destination, :departure_date, :return_date, :activities, :name
 
   def initialize
-    @name = traveler_name
+    @name = name
     @destination = destination
     @departure = departure_date
     @return = return_date
@@ -26,7 +26,7 @@ class Itinerary
       puts "\n"
       puts "Let's start building your itinerary"
       puts "1. Add destination"
-      puts "2. Add depature date"
+      puts "2. Add departure date"
       puts "3. Add return date"
       puts "4. Add your activities"
       puts "5. Finished building my itinerary"
@@ -70,8 +70,12 @@ class Itinerary
     date_str = gets.chomp
 
     if valid_date?(date_str)
-      self.departure_date = Date.parse(date_str)
+      departure_date = Date.strptime(date_str, '%Y-%m-%d')
+      if departure_date >= Date.today
+        self.departure_date = departure_date
       puts "Depature date set to #{departure_date}"
+      else
+        puts "Departure date cannot be before the current date."
     else
       puts "Invalid date format. Please enter date in YYYY-MM-DD format."
     end
@@ -82,15 +86,27 @@ class Itinerary
     date_str = gets.chomp
 
     if valid_date?(date_str)
-      self.return_date = Date.parse(date_str)
+      return_date = Date.strptime(date_str, '%Y-%m-%d')
+      if return_date >= Date.today && return_date >= departure_date
+        self.return_date = return_date
       puts "Return date set to #{return_date}"
+      elsif return_date < departure_date
+        puts "Return date cannot be before depature date."
+      else 
+        puts "Return date cannot be before the current date."
+      end
     else
       puts "Invalid date format. Please enter date in YYYY-MM-DD format."
     end
   end
 
   def valid_date?(date_str)
-    Date.parse(date_str)
+    begin
+      Date.strptime(date_str, '%Y-%m-%d')
+      return true
+    rescue ArgumentError
+      return false
+    end
   end
 
   def add_activities
