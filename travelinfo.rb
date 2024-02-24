@@ -45,6 +45,17 @@ class Itinerary
   end
 
   def add_destination
+    puts "Where is the destination of this holiday?"
+    self.destination = gets.chomp
+
+    reaction = [
+      "Oh that's wonderful, I love that place!",
+      "I've never been there.",
+      "I've heard this is a great destination."
+    ]
+
+    puts "\n"
+    puts "#{destination}! #{reaction.sample}"
   end
 
   def add_depature
