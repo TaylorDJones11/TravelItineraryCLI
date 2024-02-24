@@ -1,10 +1,12 @@
+require 'date'
+
 class Itinerary
   attr_accessor :destination, :departure_date, :return_date, :activities, :traveler_name
 
   def initialize
     @name = traveler_name
     @destination = destination
-    @depature = departure_date
+    @departure = departure_date
     @return = return_date
     @activities = activities
   end
@@ -14,6 +16,7 @@ class Itinerary
     puts "Hello! Let's get you ready for your next holiday!"
     puts "First, what's get your name?"
     self.name = gets.chomp
+    puts "\n"
     puts "Great, #{name}"
     itinerary_list
   end
@@ -34,13 +37,14 @@ class Itinerary
       when 1
         add_destination
       when 2
-        add_depature
+        add_departure
       when 3
         add_return
       when 4
         add_activities
       when 5
         final_itinerary
+        break
       else
         puts "Invalid option. Please choose a valid option."
       end
@@ -61,8 +65,8 @@ class Itinerary
     puts "#{destination}! #{reaction.sample}"
   end
 
-  def add_depature
-    puts "Enter depature date (YYYY-MM_DD):"
+  def add_departure
+    puts "Enter depature date (YYYY-MM-DD):"
     date_str = gets.chomp
 
     if valid_date?(date_str)
@@ -104,11 +108,15 @@ class Itinerary
   end
 
   def final_itinerary
+    puts "\n"
     puts "Final Itinerary:"
     puts "Destination: #{destination}" unless destination.nil? || destination.empty?
     puts "Departure Date: #{departure_date}" unless departure_date.nil?
     puts "Return Date: #{return_date}" unless return_date.nil?
     puts "Activities: #{activities}" unless activities.nil? || activities.empty?
+
+    puts "\n"
+    puts "Have a great trip!"
   end
 
 end
