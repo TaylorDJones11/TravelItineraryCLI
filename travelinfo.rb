@@ -22,26 +22,41 @@ class Itinerary
   end
 
   def itinerary_list
+    options = [1,2,3,4,5]
     loop do
       puts "\n"
       puts "Let's start building your itinerary"
-      puts "1. Add destination"
-      puts "2. Add departure date"
-      puts "3. Add return date"
-      puts "4. Add your activities"
-      puts "5. Finished building my itinerary"
+
+      options.each do |option|
+        case option
+        when 1
+          puts "1. Add destination" unless @destination
+        when 2
+          puts "2. Add departure date" unless @departure_date
+        when 3
+          puts "3. Add return date" unless @return_date
+        when 4
+          puts "4. Add your activities" unless @activities
+        when 5
+          puts "5. Finished building my itinerary"
+        end
+      end
 
       choice = gets.chomp.to_i
 
       case choice
       when 1
         add_destination
+        options.delete(1)
       when 2
         add_departure
+        options.delete(2)
       when 3
         add_return
+        options.delete(3)
       when 4
         add_activities
+        options.delete(4)
       when 5
         final_itinerary
         break
@@ -76,6 +91,7 @@ class Itinerary
       puts "Depature date set to #{departure_date}"
       else
         puts "Departure date cannot be before the current date."
+      end
     else
       puts "Invalid date format. Please enter date in YYYY-MM-DD format."
     end
