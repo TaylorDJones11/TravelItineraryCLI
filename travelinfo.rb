@@ -7,7 +7,7 @@ class Itinerary
     @depature = departure_date
     @return = return_date
     @activities = activities
-    final_itinerary = " "
+   
   end
 
   def trip
@@ -41,6 +41,9 @@ class Itinerary
       when 4
         add_activities
       when 5
+        final_itinerary
+      else
+        puts "Invalid option. Please choose a valid option."
       end
     end
   end
@@ -80,6 +83,11 @@ class Itinerary
   end
 
   def final_itinerary
+    puts "Final Itinerary:"
+    puts "Destination: #{destination}" unless destination.nil? || destination.empty?
+    puts "Departure Date: #{departure_date}" unless departure_date.nil?
+    puts "Return Date: #{return_date}" unless return_date.nil?
+    puts "Activities: #{activities}" unless activities.nil? || activities.empty?
   end
 
 end
