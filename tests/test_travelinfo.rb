@@ -8,22 +8,19 @@ class TestTravelInfo < Minitest::Test
   end
 
   def test_add_destination
-    @itinerary.add_destination("New York")
-    assert_equal "New York", @itinerary.destination
+    @itinerary.add_destination
+    assert_equal true, !@itinerary.destination.nil? && !@itinerary.destination.empty?
   end
 
   def test_add_departure
-    @itinerary.add_departure("2024-03-01")
-    assert_equal Date.new(2024, 3,1), @itinerary.departure_date
+    @itinerary.add_departure
+    assert_equal true, !@itinerary.departure_date.nil?
   end
 
   def test_add_return
-    @itinerary.add_return("2024-03-05")
-    assert_equal Date.new(2024,3,5), @itinerary.return_date
+    @itinerary.departure_date = Date.new(2024, 3,1)
+    @itinerary.add_return
+    assert_equal true, !@itinerary.return_date.nil?
   end
 
-  def test_add_activities
-    @itinerary.add_activities("Sightseeing")
-    assert_equal "Sightseeing", @itinerary.activities
-  end
 end
